@@ -1,66 +1,54 @@
-require ('dotenv').config();
+require('dotenv').config();
 
-const express = require ('express');
+const express = require('express');
 
-const morgan = require ('morgan');
+const morgan = require('morgan');
 
-
+const { newUserCtrl, getUserCtrl, loginCtrl } = require('./controllers/users');
+const { authUser } = require('./middleware/auth');
 const {
-    newuserController,
-    getuserController,
-    loginController,
-} = require('./controllers/users');
-
-const {
-    newrecoController,
-    getlistrecoController,
-    getdetailrecoController,
-    newvotrecoController,
-    getlookrecoController,
-    getresultvotrecoController,
-    deleterecoController,
+  newRecoCtrl,
+  listRecoCtrl,
+  getRecoCtrl,
+  voteRecoCtrl,
+  delRecoCtrl,
 } = require('./controllers/reco');
 
 const app = express();
 app.use(morgan('dev'));
-
-
+app.use(express.json());
 //Rutas users
-app.post('/user', newuserController);
-app.get('/user/:id', getuserController);
-app.post('/login', loginController);
+app.post('/user', newUserCtrl);
+app.get('/user/:userName', getUserCtrl);
+app.post('/login', loginCtrl);
 
 //Rutas reco
-app.post('/', newrecoController);
-app.get('/', getlistrecoController);
-app.get('/', getdetailrecoController);
-app.post ('/', newvotrecoController);
-app.get ('/', getlookrecoController);
-app.get ('/', getresultvotrecoController);
-app.delete ('/reco/:id', deleterecoController);
+app.post('/reco', authUser, newRecoCtrl); //publicar reco
+app.get('/reco', listRecoCtrl); //ver listado de todas las reco (userId, tittle, image, category, spot, openLine), se puede incluir aca la buscqueda por categoria, lugar y votos
+app.get('/reco/:id', getRecoCtrl); //ver el detalle de una reco por ID
+app.post('/reco/:id/votes', authUser, voteRecoCtrl); //voto recomendacion por ID
+app.delete('/reco/:id', authUser, delRecoCtrl); //eliminar una reco
 
 // Middleware de 404
 
 app.use((req, res) => {
-    res.status(404).send({
-        status: 'error',
-        message: 'Not found',
-    });
+  res.status(404).send({
+    status: 'error',
+    message: 'Not found',
+  });
 });
 
 //Middleware de gestion de errores
 app.use((error, req, res, next) => {
-    console.error(error);
+  console.error(error);
 
-    res.status(error.httpStatus || 500) .send({
-        status: 'error',
-        message: error.message,
-    });
+  res.status(error.httpStatus || 500).send({
+    status: 'error',
+    message: error.message,
+  });
 });
-
 
 // Lanzamos el servidor
 app.listen(3000, () => {
-    console.log('Servidor funcionando');
+  console.log('Servidor funcionando');
 });
-
