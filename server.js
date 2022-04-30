@@ -1,9 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
-
 const morgan = require('morgan');
-
 const { newUserCtrl, getUserCtrl, loginCtrl } = require('./controllers/users');
 const { authUser } = require('./middleware/auth');
 const {
@@ -18,8 +16,8 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 //Rutas users
-app.post('/user', newUserCtrl);
-app.get('/user/:userName', getUserCtrl);
+app.post('/users', newUserCtrl);
+app.get('/users/:userName', getUserCtrl);
 app.post('/login', loginCtrl);
 
 //Rutas reco
