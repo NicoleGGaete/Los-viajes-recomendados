@@ -2,20 +2,14 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { createUser, getUserByUserName, getUserEmail } = require('../db/users');
 const { genError } = require('../helpers');
+const { nwUsrSchm, lgnSchm } = require('../validators/userValidators');
 
 const newUserCtrl = async (req, res, next) => {
   try {
     const { email, password, userName, name, surname, image, description } =
       req.body;
 
-    console.log('Hasta aca llegamos');
-    //ESTO REMPLAZAR POR JOI ESTOY EN ESO
-    if (!email || !password) {
-      throw genError(
-        'Debe ingresar un email y un password para registrarse',
-        400
-      );
-    }
+    await nwUsrSchm.validateAsync(req.body);
 
     const infoNewUser = await createUser(
       email,
@@ -31,7 +25,6 @@ const newUserCtrl = async (req, res, next) => {
       status: 'ok',
       message: `User creado exitosamente con ID:${infoNewUser}`,
     });
-    console.log(infoNewUser);
   } catch (error) {
     next(error);
   }
@@ -55,10 +48,7 @@ const getUserCtrl = async (req, res, next) => {
 const loginCtrl = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
-    if (!email || !password) {
-      throw genError('Debes colocar correo y un password', 400);
-    }
+    await lgnSchm.validateAsync(req.body);
 
     //busco en base de datos
     const user = await getUserEmail(email);
