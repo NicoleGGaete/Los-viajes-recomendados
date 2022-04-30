@@ -5,11 +5,11 @@ const morgan = require('morgan');
 const { newUserCtrl, getUserCtrl, loginCtrl } = require('./controllers/users');
 const { authUser } = require('./middleware/auth');
 const {
-  newRecoCtrl,
   listRecoCtrl,
   getRecoCtrl,
   voteRecoCtrl,
   delRecoCtrl,
+  newRecoCtrl,
 } = require('./controllers/reco');
 
 const app = express();
