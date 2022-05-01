@@ -17,6 +17,7 @@ const authUser = (req, res, next) => {
     }
 
     req.userId = token.id;
+
     next();
   } catch (error) {
     next(error);
