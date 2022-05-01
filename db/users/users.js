@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-const { genError } = require('../helpers');
-const { getConnection } = require('./db');
+const { genError } = require('../../helpers');
+const { getConnection } = require('../db');
 
 //Info de usuario por su email
 

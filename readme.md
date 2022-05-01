@@ -9,18 +9,23 @@
    1. Inicializacion DB
    2. Conexion DB
 
-1. Endpoints
+2. Endpoints
+
    1. Users
       1. Registro de nuevo usuario
       2. Login de usuario
       3. Busqueda por UserName
    2. Recomendaciones
       1. Publicar recomendacion
-      2. Ver lista de recomendacione (userId, tittle, image, category, spot, openLine)
-      3. Buscar recomendaciones por lugar, categoria y voto
-      4. Ver detalle de recomendaciones por id
-      5. Votar recomendacion
-      6. Eliminar recomendacion
+      2. Ver lista de recomendacione (userId, tittle, image, category, spot, openLine) y Buscar recomendaciones por lugar, categoria y orden por voto
+      3. Ver detalle de recomendaciones por id
+      4. Votar recomendacion
+      5. Eliminar recomendacion
+
+3. Bonus
+   1. Gestion de perfiles
+   2. Borrar reco **_ver 2.2.5_**
+   3. Comentarios en las recomendaciones
 
 ### Tablas
 
