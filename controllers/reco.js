@@ -1,4 +1,4 @@
-const { listReco } = require('../db/reco');
+const { listReco, getRecoId } = require('../db/reco');
 
 // app.post('/reco', authUser, newRecoCtrl); //publicar reco
 const newRecoCtrl = async (req, res, next) => {
@@ -25,9 +25,12 @@ const listRecoCtrl = async (req, res, next) => {
 // app.get('/reco/:id', getRecoCtrl); //ver el detalle de una reco por ID
 const getRecoCtrl = async (req, res, next) => {
   try {
+    const { id } = req.params;
+    const reco = await getRecoId(id);
+
     res.send({
-      status: 'error',
-      message: 'aun no implementado',
+      status: 'ok',
+      data: reco,
     });
   } catch (error) {
     next(error);
