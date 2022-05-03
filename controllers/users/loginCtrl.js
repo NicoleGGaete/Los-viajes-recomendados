@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { getUserEmail } = require('../../db/users/users');
-const { genError } = require('../../helpers');
+const { getUserEmail } = require('../../db/users/getUserEmail');
+const { genError } = require('../../helpers/helpers');
 const { lgnSchm } = require('../../validators/users/lgnSchm');
 
 const loginCtrl = async (req, res, next) => {
@@ -16,7 +16,7 @@ const loginCtrl = async (req, res, next) => {
     const validPass = await bcrypt.compare(password, user.password);
 
     if (!validPass) {
-      throw genError('La contraseña no coincide', 401);
+      throw await genError('La contraseña no coincide', 401);
     }
 
     //payload token
