@@ -9,9 +9,11 @@ async function main() {
     connection = await getConnection();
 
     console.log('Borrando tablas existentes');
+    await connection.query('DROP TABLE IF EXISTS recoVotes');
     await connection.query('DROP TABLE IF EXISTS comments');
     await connection.query('DROP TABLE IF EXISTS reco');
     await connection.query('DROP TABLE IF EXISTS users');
+
     console.log('Creando tablas');
 
     await connection.query(`
@@ -41,9 +43,8 @@ async function main() {
             openLine VARCHAR(100) NOT NULL,
             text VARCHAR(3000) NOT NULL,
             image VARCHAR(100),
-            votes VARCHAR(100) DEFAULT 0,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(userId) REFERENCES users(id)
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+           
         );
 
        `);
@@ -59,6 +60,15 @@ async function main() {
       FOREIGN KEY(recoId) REFERENCES reco(recoId)
     )
     `);
+
+    await connection.query(`
+    CREATE TABLE recoVotes (
+      voteId INTEGER PRIMARY KEY AUTO_INCREMENT,
+      recoId INTEGER NOT NULL,
+      vote TINYINT DEFAULT 0 NOT NULL,
+      dateVote DATETIME NOT NULL,
+      userId INTEGER NOT NULL
+    )`);
   } catch (error) {
     console.error(error);
   } finally {

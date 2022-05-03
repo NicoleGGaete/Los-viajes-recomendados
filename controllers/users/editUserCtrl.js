@@ -1,6 +1,7 @@
 const { editUser } = require('../../db/users/editUser');
-const { editIfExist } = require('../../helpers/editIfExist');
 const { edtUsrSchm } = require('../../validators/users/edtUsrSchm');
+
+//controlador de edicion de usuario
 
 const editUserCtrl = async (req, res, next) => {
   try {

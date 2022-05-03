@@ -1,5 +1,6 @@
 const { getConnection } = require('../db');
 
+//eliminacion de reco de usuario
 const delRecoId = async (recoId) => {
   let connection;
 

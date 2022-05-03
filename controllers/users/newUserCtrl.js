@@ -2,6 +2,7 @@ const { createUser } = require('../../db/users/createUser');
 const { genError } = require('../../helpers/helpers');
 const { nwUsrSchm } = require('../../validators/users/nwUsrSchm');
 
+//controlador new user
 const newUserCtrl = async (req, res, next) => {
   try {
     await nwUsrSchm.validateAsync(req.body);

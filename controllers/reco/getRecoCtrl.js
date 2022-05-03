@@ -1,6 +1,6 @@
 const { getRecoId } = require('../../db/reco/getRecoId');
 
-// app.get('/reco/:id', getRecoCtrl); //ver el detalle de una reco por ID
+//Controlador ver reco por recoId
 const getRecoCtrl = async (req, res, next) => {
   try {
     const { id } = req.params;

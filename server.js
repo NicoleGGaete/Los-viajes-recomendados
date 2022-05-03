@@ -13,9 +13,10 @@ const { editUserCtrl } = require('./controllers/users/editUserCtrl');
 const { newRecoCtrl } = require('./controllers/reco/newRecoCtrl');
 const { listRecoCtrl } = require('./controllers/reco/listRecoCtrl');
 const { getRecoCtrl } = require('./controllers/reco/getRecoCtrl');
-const { voteRecoCtrl } = require('./controllers/reco/reco');
+const { voteRecoCtrl } = require('./controllers/reco/voteRecoCtrl');
 const { comRecoCtrl } = require('./controllers/reco/comRecoCtrl');
 const { delRecoCtrl } = require('./controllers/reco/delRecoCtrl');
+const { recoExist } = require('./db/reco/recoExist');
 
 const app = express();
 app.use(morgan('dev'));
@@ -31,9 +32,9 @@ app.put('/users/:userName', authUser, editUserCtrl);
 app.post('/reco', authUser, newRecoCtrl); //publicar reco
 app.get('/reco', authUser, listRecoCtrl); //ver listado de todas las reco (userId, tittle, image, category, spot, openLine), se puede incluir aca la buscqueda por categoria, lugar y votos
 app.get('/reco/:recoId', getRecoCtrl); //ver el detalle de una reco por ID
-app.post('/reco/:recoId/votes', authUser, voteRecoCtrl); //voto recomendacion por ID
-app.delete('/reco/:recoId', authUser, delRecoCtrl); //eliminar una reco
-app.post('/reco/::recoId', authUser, comRecoCtrl); //comentar una reco
+app.post('/reco/:recoId/votes', authUser, recoExist, voteRecoCtrl); //voto recomendacion por ID
+app.delete('/reco/:recoId', authUser, recoExist, delRecoCtrl); //eliminar una reco
+app.post('/reco/:recoId', authUser, recoExist, comRecoCtrl); //comentar una reco
 
 // Middleware de 404
 

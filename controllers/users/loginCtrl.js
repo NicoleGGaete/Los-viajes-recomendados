@@ -4,6 +4,7 @@ const { getUserEmail } = require('../../db/users/getUserEmail');
 const { genError } = require('../../helpers/helpers');
 const { lgnSchm } = require('../../validators/users/lgnSchm');
 
+//controlador login
 const loginCtrl = async (req, res, next) => {
   try {
     const { email, password } = req.body;

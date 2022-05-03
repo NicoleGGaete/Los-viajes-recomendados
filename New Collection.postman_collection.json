@@ -1,0 +1,386 @@
+{
+	"info": {
+		"_postman_id": "a6b23a79-6672-45f7-9f49-e5c6790e19a5",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateUser",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"prueba3@prueba.com\",\n    \"password\": \"1234567\",\n    \"confirmPas\": \"1234567\",\n    \"userName\":\"Prueba3\",\n    \"name\":\"Prueba\",\n    \"surname\":\"Tres\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser Copy",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"prueba4@prueba.com\",\n    \"password\": \"1234567\",\n    \"confirmPas\": \"1234567\",\n    \"userName\":\"Prueba4\",\n    \"name\":\"Prueba\",\n    \"surname\":\"Cuatro\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUser",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjUxMDE5MTc4LCJleHAiOjE2NTE2MjM5Nzh9._vU2tZ74572wSHavMndfjWjuiLeOstMgmujbb1Wn2-E",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/users/Prueba3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"Prueba3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"prueba2@prueba.com\",\n    \"password\": \"1234567\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditUser",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjUxNjAyNzg2LCJleHAiOjE2NTIyMDc1ODZ9.6XqpN1_3wGy9ybIp2PTawNYKOMXUuYFETPrPFJhepz8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"description\":\"SOY PIERTE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/users/Prueba2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"Prueba2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "newReco",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjUxNTg5NjI0LCJleHAiOjE2NTIxOTQ0MjR9.5ka9npRRlCx4HuVDvK8Npc1z54Yt3bB36F7hrOAs1lU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tittle\": \"Islas Impar\",\n    \"category\": \"Montañá\",\n    \"spot\": \"Volcan Isla Impar 7\",\n    \"openLine\": \"Escalada al Volcan\",\n    \"text\": \"Esto es una escalada al volcan. Esto es una eslada al volcan que realice en algun momento de mi vida\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/reco",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reco"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "newReco",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjUxNjA1MDIxLCJleHAiOjE2NTIyMDk4MjF9.k6HBTHonuw5CITcUStJoIV1X816tV0LnTAoTsRAYhe4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tittle\": \"Islas Impar\",\n    \"category\": \"Playa\",\n    \"spot\": \"Volcan Isla Impar 7\",\n    \"openLine\": \"Playas Volcanicas\",\n    \"text\": \"Esto es un paseo por las playas. Esto es un paseo que realice en algun momento de mi vida\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/reco",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reco"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listReco",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjUxNTg5NjI0LCJleHAiOjE2NTIxOTQ0MjR9.5ka9npRRlCx4HuVDvK8Npc1z54Yt3bB36F7hrOAs1lU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/reco?search=montaña&order=&direction=desc",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reco"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "montaña"
+						},
+						{
+							"key": "order",
+							"value": ""
+						},
+						{
+							"key": "direction",
+							"value": "desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gerRecoId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/reco/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reco",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "commentReco",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjUxNjA1MDIxLCJleHAiOjE2NTIyMDk4MjF9.k6HBTHonuw5CITcUStJoIV1X816tV0LnTAoTsRAYhe4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comments\": \"sfss fsssssssssssssss fssssssssssssssss fsssssssssss\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/reco/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reco",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delReco",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjUxNTg5NjI0LCJleHAiOjE2NTIxOTQ0MjR9.5ka9npRRlCx4HuVDvK8Npc1z54Yt3bB36F7hrOAs1lU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/reco/10",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reco",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voteReco",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUxNjA4MTQ5LCJleHAiOjE2NTIyMTI5NDl9.77CZ5z948plY0t-0wwO_NWJlIbwGZO6WBJ-Ujz3gpJM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vote\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/reco/1/votes",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reco",
+						"1",
+						"votes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

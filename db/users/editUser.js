@@ -1,6 +1,5 @@
-const { editIfExist } = require('../../helpers/editIfExist');
 const { getConnection } = require('../db');
-
+//edit de usuario FALTA ACOMODAR ALGUNAS COSAS ROTAS
 const editUser = async (id, email, userName, name, surname, description) => {
   let connection;
   try {
@@ -19,7 +18,7 @@ const editUser = async (id, email, userName, name, surname, description) => {
     //   console.log(email);
     // }
 
-    await editIfExist(id, email);
+    // await editIfExist(id, email);
 
     await connection.query(
       `

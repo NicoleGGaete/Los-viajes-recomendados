@@ -1,5 +1,6 @@
 const { getConnection } = require('../db');
 
+//gestion base de datos de nuevo comentario
 const commentReco = async (userId, idReco, cmmnt) => {
   let connection;
   try {

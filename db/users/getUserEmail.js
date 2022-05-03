@@ -14,9 +14,8 @@ const getUserEmail = async (email) => {
         `,
       [email]
     );
-
     if (result.length === 0) {
-      throw genError('No existe usuario con ese email', 404);
+      throw await genError('No existe usuario con ese email', 404);
     }
     return result[0];
   } finally {

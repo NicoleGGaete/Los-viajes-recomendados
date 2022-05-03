@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const { genError } = require('../../helpers/helpers');
 const { getConnection } = require('../db');
 
+//Creacion del usuario en la base de datos
 const createUser = async (
   email,
   password,
