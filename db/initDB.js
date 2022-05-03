@@ -9,6 +9,7 @@ async function main() {
     connection = await getConnection();
 
     console.log('Borrando tablas existentes');
+    await connection.query('DROP TABLE IF EXISTS comments');
     await connection.query('DROP TABLE IF EXISTS reco');
     await connection.query('DROP TABLE IF EXISTS users');
     console.log('Creando tablas');
@@ -47,17 +48,17 @@ async function main() {
 
        `);
 
-    // await connection.query(`
-    // CREATE TABLE comments (
-    //   cmmntId INTEGER PRIMARY KEY AUTO_INCREMENT,
-    //   userId INTEGER NOT NULL,
-    //   recoId INTEGER NOT NULL,
-    //   comment VARCHAR(300) NOT NULL,
-    //   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    //   FOREIGN KEY(userId) REFERENCES users(id),
-    //   FOREIGN KEY(recoId) REFERENCES reco(recoId)
-    // )
-    // `);
+    await connection.query(`
+    CREATE TABLE comments (
+      cmmntId INTEGER PRIMARY KEY AUTO_INCREMENT,
+      userId INTEGER NOT NULL,
+      recoId INTEGER NOT NULL,
+      comment VARCHAR(300) NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY(userId) REFERENCES users(id),
+      FOREIGN KEY(recoId) REFERENCES reco(recoId)
+    )
+    `);
   } catch (error) {
     console.error(error);
   } finally {

@@ -1,12 +1,13 @@
-const { createUser } = require('../../db/users/users');
+const { createUser } = require('../../db/users/createUser');
+const { genError } = require('../../helpers/helpers');
 const { nwUsrSchm } = require('../../validators/users/nwUsrSchm');
 
 const newUserCtrl = async (req, res, next) => {
   try {
-    const { email, password, userName, name, surname, image, description } =
-      req.body;
-
     await nwUsrSchm.validateAsync(req.body);
+    const { email, password, userName, name, surname, description } = req.body;
+
+    const image = req.files;
 
     const infoNewUser = await createUser(
       email,
@@ -23,7 +24,7 @@ const newUserCtrl = async (req, res, next) => {
       message: `User creado exitosamente con ID:${infoNewUser}`,
     });
   } catch (error) {
-    next(error);
+    next(await genError(error));
   }
 };
 

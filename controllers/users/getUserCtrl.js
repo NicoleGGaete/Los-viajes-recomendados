@@ -1,14 +1,13 @@
-const { getUserByUserName } = require('../../db/users/users');
+const { getUserByUserName } = require('../../db/users/getUserByUserName');
 
 const getUserCtrl = async (req, res, next) => {
   try {
     const { userName } = req.params;
-
-    const user = await getUserByUserName(userName);
+    const upshot = await getUserByUserName(userName);
 
     res.send({
       status: 'ok',
-      data: user,
+      data: upshot,
     });
   } catch (error) {
     next(error);

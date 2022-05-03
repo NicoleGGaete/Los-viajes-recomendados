@@ -1,22 +1,22 @@
-const { genError } = require('../../helpers');
+const { genError } = require('../../helpers/helpers');
 const { getConnection } = require('../db');
 
-const getRecoId = async (recoId) => {
+//Info de usuario por su email
+const getUserEmail = async (email) => {
   let connection;
+
   try {
     connection = await getConnection();
 
     const [result] = await connection.query(
       `
-        SELECT * FROM reco WHERE recoId = ?
+        SELECT * FROM users WHERE email = ?
         `,
-      [recoId]
+      [email]
     );
+
     if (result.length === 0) {
-      throw await genError(
-        `La recomendacion con el ID: ${recoId} no existe`,
-        404
-      );
+      throw genError('No existe usuario con ese email', 404);
     }
     return result[0];
   } finally {
@@ -24,4 +24,4 @@ const getRecoId = async (recoId) => {
   }
 };
 
-module.exports = { getRecoId };
+module.exports = { getUserEmail };

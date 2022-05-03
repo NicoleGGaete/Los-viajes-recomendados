@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { genError } = require('../helpers');
+const { genError } = require('../helpers/helpers');
 
 const authUser = (req, res, next) => {
   try {
