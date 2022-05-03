@@ -1,5 +1,6 @@
 const { getConnection } = require('../db');
 
+//creacion de reco de usario en base de datos
 const createReco = async (userId, tittle, category, spot, openLine, text) => {
   let connection;
 

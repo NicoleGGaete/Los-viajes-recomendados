@@ -2,6 +2,7 @@ const { delRecoId } = require('../../db/reco/delReco');
 const { getRecoId } = require('../../db/reco/getRecoId');
 const { genError } = require('../../helpers/helpers');
 
+//Controlador de borrado de reco
 const delRecoCtrl = async (req, res, next) => {
   try {
     const { recoId } = req.params;

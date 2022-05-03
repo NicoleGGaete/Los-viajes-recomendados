@@ -1,6 +1,7 @@
 const { genError } = require('../../helpers/helpers');
 const { getConnection } = require('../db');
 
+//obtencion de reco por recoId
 const getRecoId = async (recoId) => {
   let connection;
   try {

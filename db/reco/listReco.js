@@ -1,5 +1,6 @@
 const { getConnection } = require('../db');
 
+//listado de recomendaciones por categoria y lugar, ordenado desc o asc por fecha o por cantidad de votos
 const listReco = async (search, order, direction) => {
   let connection;
 
@@ -22,7 +23,7 @@ const listReco = async (search, order, direction) => {
     if (search) {
       queryOutcome = await connection.query(
         `
-            SELECT reco.recoId, reco.userId, tittle, image, openLine
+            SELECT reco.recoId, reco.userId, tittle, image, openLine,(SELECT AVG(vote) FROM recoVotes WHERE recoId=reco.recoId)
             FROM reco
             WHERE category LIKE ? OR spot LIKE ?
             ORDER BY ${orderBy} ${orderDir}
@@ -32,7 +33,8 @@ const listReco = async (search, order, direction) => {
       );
     } else {
       queryOutcome = await connection.query(
-        `SELECT reco.recoId, reco.userId, tittle, image, openLine 
+        `SELECT reco.recoId, reco.userId, tittle, image, openLine ,
+        (SELECT AVG(vote) FROM recoVotes WHERE recoId=reco.recoId) 
                 FROM reco ORDER BY ${orderBy} ${orderDir}`
       );
     }

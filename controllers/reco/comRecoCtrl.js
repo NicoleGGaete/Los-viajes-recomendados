@@ -1,15 +1,14 @@
 const { commentReco } = require('../../db/reco/commntReco');
-const { tabCmnt } = require('../../db/reco/tabCmnt');
 const { cmmntSchm } = require('../../validators/reco/cmmntSchm');
 
+//Controlador de comentario
 const comRecoCtrl = async (req, res, next) => {
   try {
     const idUser = req.userId;
     const { comments } = req.body;
-    const idReco = req.params.id;
+    const idReco = req.params.recoId;
     //ID
     await cmmntSchm.validateAsync(req.body);
-    tabCmnt();
     commentReco(idUser, idReco, comments);
     res.send({
       status: 'ok',

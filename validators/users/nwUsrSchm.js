@@ -16,7 +16,7 @@ const nwUsrSchm = Joi.object().keys({
     'string.empty': 'Debe ingresar un password de confirmacion',
     'any.only':
       'El password de confirmacion tiene que coincidir con el password',
-    'any.required': 'El password de confirmacion es un campo requerido',
+    'any.required': 'El confirmPas es un campo requerido',
   }),
 
   userName: Joi.string().token().max(100).required().messages({
