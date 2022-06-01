@@ -3,6 +3,7 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const { authUser } = require('./middleware/auth');
 const { newUserCtrl } = require('./controllers/users/newUserCtrl');
@@ -21,6 +22,7 @@ const { recoExist } = require('./db/reco/recoExist');
 const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(cors());
 app.use(bodyParser.json());
 //Rutas users
 app.post('/users', newUserCtrl);
