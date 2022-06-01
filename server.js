@@ -31,12 +31,12 @@ app.post('/login', loginCtrl);
 app.put('/users/:userName', authUser, editUserCtrl);
 
 //Rutas reco
-app.post('/reco', authUser, newRecoCtrl); //publicar reco
-app.get('/reco', authUser, listRecoCtrl); //ver listado de todas las reco (userId, tittle, image, category, spot, openLine), se puede incluir aca la buscqueda por categoria, lugar y votos
-app.get('/reco/:recoId', getRecoCtrl); //ver el detalle de una reco por ID
-app.post('/reco/:recoId/votes', authUser, recoExist, voteRecoCtrl); //voto recomendacion por ID
-app.delete('/reco/:recoId', authUser, recoExist, delRecoCtrl); //eliminar una reco
-app.post('/reco/:recoId', authUser, recoExist, comRecoCtrl); //comentar una reco
+app.post('/', authUser, newRecoCtrl); //publicar reco
+app.get('/', authUser, listRecoCtrl); //ver listado de todas las reco (userId, tittle, image, category, spot, openLine), se puede incluir aca la buscqueda por categoria, lugar y votos
+app.get('/:recoId', getRecoCtrl); //ver el detalle de una reco por ID
+app.post('/:recoId/votes', authUser, recoExist, voteRecoCtrl); //voto recomendacion por ID
+app.delete('/:recoId', authUser, recoExist, delRecoCtrl); //eliminar una reco
+app.post('/:recoId', authUser, recoExist, comRecoCtrl); //comentar una reco
 
 // Middleware de 404
 
@@ -58,6 +58,6 @@ app.use((error, req, res, next) => {
 });
 
 // Lanzamos el servidor
-app.listen(3000, () => {
+app.listen(4000, () => {
   console.log('Servidor funcionando');
 });
