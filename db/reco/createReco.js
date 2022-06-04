@@ -1,7 +1,15 @@
 const { getConnection } = require('../db');
 
 //creacion de reco de usario en base de datos
-const createReco = async (userId, tittle, category, spot, openLine, text) => {
+const createReco = async (
+  userId,
+  tittle,
+  category,
+  spot,
+  openLine,
+  text,
+  image = ''
+) => {
   let connection;
 
   try {
@@ -9,10 +17,10 @@ const createReco = async (userId, tittle, category, spot, openLine, text) => {
 
     const [result] = await connection.query(
       `
-        INSERT INTO reco (userId, tittle, category, spot, openLine, text)
-        VALUES (?,?,?,?,?,?)
+        INSERT INTO reco (userId, tittle, category, spot, openLine, text, image)
+        VALUES (?,?,?,?,?,?,?)
         `,
-      [userId, tittle, category, spot, openLine, text]
+      [userId, tittle, category, spot, openLine, text, image]
     );
     return result.insertId;
   } finally {

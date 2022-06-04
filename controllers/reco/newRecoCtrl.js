@@ -1,37 +1,41 @@
 // const { genError, upImage, showDebug } = require('../../helpers/helpers');
 const { createReco } = require('../../db/reco/createReco');
 const { nwRcSchm } = require('../../validators/reco/nwRcSchm');
+const path = require('path');
+const sharp = require('sharp');
+const { nanoid } = require('nanoid');
+const { createPathIfNot } = require('../../helpers/helpers');
 
 const newRecoCtrl = async (req, res, next) => {
   try {
     await nwRcSchm.validateAsync(req.body);
     const { tittle, category, spot, openLine, text } = req.body;
 
-    // const images = [];
+    let imageFileName;
 
-    // if (req.files && Object.keys(req.files).length > 0) {
-    //   for (const [imageName, imageData] of Object.entries(req.files).slice(
-    //     0,
-    //     3
-    //   )) {
-    //     try {
-    //       showDebug(imageName);
-    //       const prossImg = await upImage(imageData);
+    if (req.files && req.files.image) {
+      const uploadsDir = path.join(__dirname, '../../uploads');
 
-    //       images.push(prossImg);
-    //       return images;
-    //     } catch (error) {
-    //       throw genError(
-    //         'No se pudo procesar la imagen, intente en unos segundos de nuevos',
-    //         400
-    //       );
-    //     }
-    //   }
-    // }
-    // console.log(images);
+      await createPathIfNot(uploadsDir);
+
+      const image = sharp(req.files.image.data);
+      image.resize(500);
+
+      imageFileName = `${nanoid(24)}.jpg`;
+
+      await image.toFile(path.join(uploadsDir, imageFileName));
+    }
+
     const userId = req.userId;
-    const id = await createReco(userId, tittle, category, spot, openLine, text);
-    console.log();
+    const id = await createReco(
+      userId,
+      tittle,
+      category,
+      spot,
+      openLine,
+      text,
+      imageFileName
+    );
     res.send({
       status: 'ok',
       message: `Recomendacion con ID: ${id} fue creado exitosamente`,

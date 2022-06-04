@@ -1,9 +1,9 @@
 require('dotenv').config();
 
-const bodyParser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 
 const { authUser } = require('./middleware/auth');
 const { newUserCtrl } = require('./controllers/users/newUserCtrl');
@@ -21,10 +21,13 @@ const { recoExist } = require('./db/reco/recoExist');
 const { getMeCtrl } = require('./controllers/users/getMeCtrl');
 
 const app = express();
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
-app.use(bodyParser.json());
+app.use(fileUpload());
+app.use('/uploads', express.static('./uploads'));
+
 //Rutas users
 app.post('/users', newUserCtrl);
 app.get('/users', authUser, getMeCtrl);
