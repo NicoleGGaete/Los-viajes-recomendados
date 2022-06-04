@@ -10,7 +10,7 @@ const createUser = async (
   name,
   surname,
   image = '',
-  description
+  description = ''
 ) => {
   let connection;
   try {

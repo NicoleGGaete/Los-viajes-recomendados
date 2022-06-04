@@ -6,13 +6,13 @@ const { nwUsrSchm } = require('../../validators/users/nwUsrSchm');
 const newUserCtrl = async (req, res, next) => {
   try {
     await nwUsrSchm.validateAsync(req.body);
-    const { email, password, userName, name, surname, description } = req.body;
+    const { email, password1, userName, name, surname, description } = req.body;
 
     const image = req.files;
 
     const infoNewUser = await createUser(
       email,
-      password,
+      password1,
       userName,
       name,
       surname,
