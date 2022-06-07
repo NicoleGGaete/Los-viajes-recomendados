@@ -5,14 +5,15 @@ const { getConnection } = require('../db');
 //Creacion del usuario en la base de datos
 const createUser = async (
   email,
-  password,
+  password1,
   userName,
   name,
   surname,
-  image = '',
-  description = ''
+  avatar,
+  description
 ) => {
   let connection;
+
   try {
     connection = await getConnection();
     //comprobamos elusuario por email
@@ -30,13 +31,13 @@ const createUser = async (
     }
 
     //encriptamos
-    const passHash = await bcrypt.hash(password, 8);
+    const passHash = await bcrypt.hash(password1, 8);
     //creamos usuario
     const [newUser] = await connection.query(
       `
-        INSERT INTO users (email, password, userName, name, surname, image, description) VALUES (?,?,?,?,?,?,?)
+        INSERT INTO users (email, password, userName, name, surname, avatar, description) VALUES (?,?,?,?,?,?,?)
         `,
-      [email, passHash, userName, name, surname, image, description]
+      [email, passHash, userName, name, surname, avatar, description]
     );
 
     //devuelvbe la id

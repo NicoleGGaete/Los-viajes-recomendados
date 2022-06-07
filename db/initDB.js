@@ -25,7 +25,7 @@ async function main() {
              userName VARCHAR(100) UNIQUE NOT NULL,
              name VARCHAR(100) NOT NULL,
              surname VARCHAR(100) NOT NULL,
-             image VARCHAR(100),
+             avatar VARCHAR(100),
              description VARCHAR(280),
              role ENUM("normal", "admin") DEFAULT "normal" NOT NULL
 
@@ -77,4 +77,4 @@ async function main() {
   }
 }
 
-main();
+main().catch((error) => console.error(error));

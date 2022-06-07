@@ -9,7 +9,11 @@ const getRecoId = async (recoId) => {
 
     const [result] = await connection.query(
       `
-        SELECT * FROM reco WHERE recoId = ?
+        SELECT * FROM reco
+        JOIN users
+        ON users.id = reco.userId
+        WHERE reco.recoId = ?
+        
         `,
       [recoId]
     );

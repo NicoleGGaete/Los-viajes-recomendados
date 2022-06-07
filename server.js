@@ -31,7 +31,7 @@ app.use('/uploads', express.static('./uploads'));
 //Rutas users
 app.post('/users', newUserCtrl);
 app.get('/users', authUser, getMeCtrl);
-app.get('/:userName', getUserCtrl);
+app.get('users/:userName', getUserCtrl);
 app.post('/login', loginCtrl);
 app.put('/users/:userName', authUser, editUserCtrl);
 

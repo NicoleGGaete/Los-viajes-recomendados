@@ -8,7 +8,7 @@ const createReco = async (
   spot,
   openLine,
   text,
-  image = ''
+  imageFileName
 ) => {
   let connection;
 
@@ -20,7 +20,7 @@ const createReco = async (
         INSERT INTO reco (userId, tittle, category, spot, openLine, text, image)
         VALUES (?,?,?,?,?,?,?)
         `,
-      [userId, tittle, category, spot, openLine, text, image]
+      [userId, tittle, category, spot, openLine, text, imageFileName]
     );
     return result.insertId;
   } finally {
