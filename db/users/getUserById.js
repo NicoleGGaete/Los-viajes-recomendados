@@ -1,10 +1,11 @@
-const { result } = require('@hapi/joi/lib/base');
 const { genError } = require('../../helpers/helpers');
+const { getConnection } = require('../db');
 
-const getUserById = async (id, includeRecos = true) => {
+const getUserById = async (id) => {
   let connection;
   try {
-    connection = await connection.query(
+    connection = await getConnection();
+    const [result] = await connection.query(
       `
             SELECT id, email, created_at, userName, description FROM users WHERE id = ?
           `,

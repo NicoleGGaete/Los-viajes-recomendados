@@ -20,7 +20,7 @@ const delRecoCtrl = async (req, res, next) => {
     console.log(recoId + 2);
 
     await delRecoId(recoId);
-    console.log(recoId + 3);
+    console.log(recoId + 3 + 'ESTO ESTA EN DELREOCCTRL');
 
     res.send({
       status: 'ok',

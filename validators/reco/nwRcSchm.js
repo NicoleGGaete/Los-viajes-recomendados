@@ -6,6 +6,8 @@ const nwRcSchm = Joi.object().keys({
     'any.required': 'El "tittle" es un campo requerido',
   }),
 
+  image: Joi.string().empty(''),
+
   category: Joi.string().max(100).required().messages({
     'string.empty': 'Debe ingresar una categoria',
     'string.max': 'La categoria no debe tener más de 100 caracteres',

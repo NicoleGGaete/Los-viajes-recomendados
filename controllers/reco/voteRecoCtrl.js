@@ -4,8 +4,6 @@ const { vtSchm } = require('../../validators/reco/vtSchm');
 // controlador voto recomendacion por ID
 const voteRecoCtrl = async (req, res, next) => {
   try {
-    console.log('ERRRRORRRR');
-
     const { recoId } = req.params;
 
     const userId = req.userId;
@@ -25,7 +23,5 @@ const voteRecoCtrl = async (req, res, next) => {
   }
 };
 module.exports = {
-  // newRecoCtrl,
-
   voteRecoCtrl,
 };

@@ -20,7 +20,7 @@ const newUserCtrl = async (req, res, next) => {
       const image = sharp(req.files.avatar.data);
       image.resize(150);
 
-      avatarUp = `${nanoid(24)}.jpg`;
+      avatarUp = `${nanoid(24)}.webp`;
       await image.toFile(path.join(uploadsDir, avatarUp));
     }
     const infoNewUser = await createUser(

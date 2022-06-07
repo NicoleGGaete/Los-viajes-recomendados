@@ -6,7 +6,7 @@ const getRecoId = async (recoId) => {
   let connection;
   try {
     connection = await getConnection();
-
+    console.log(recoId);
     const [result] = await connection.query(
       `
         SELECT * FROM reco
