@@ -1,5 +1,4 @@
 const Joi = require('@hapi/joi');
-const { genError } = require('../../helpers/helpers');
 
 const nwUsrSchm = Joi.object().keys({
   email: Joi.string().email().required('email').messages({
@@ -39,7 +38,9 @@ const nwUsrSchm = Joi.object().keys({
     'any.required': 'El apellido de usuario es un campo requerido',
   }),
 
-  description: Joi.string().optional().max(280).messages({
+  avatar: Joi.string().empty(''),
+
+  description: Joi.string().empty('').max(280).messages({
     // 'string.empty': 'Debe ingresar una descripcion',
     'string.max': 'La descripcion debe contener menos de 280 caraceres',
   }),

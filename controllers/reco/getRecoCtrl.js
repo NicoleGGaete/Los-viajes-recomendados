@@ -3,9 +3,8 @@ const { getRecoId } = require('../../db/reco/getRecoId');
 //Controlador ver reco por recoId
 const getRecoCtrl = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const reco = await getRecoId(id);
-
+    const { recoId } = req.params;
+    const reco = await getRecoId(recoId);
     res.send({
       status: 'ok',
       data: reco,

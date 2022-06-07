@@ -1,4 +1,4 @@
-const path = require('path');
+// const path = require('path');
 const fs = require('fs/promises');
 
 const genError = async (message, status) => {
@@ -15,12 +15,12 @@ const createPathIfNot = async (path) => {
   }
 };
 
-const delImage = async (uploadImage) => {
-  await fs.unlink(path.join(imgUploadPth, uploadImage));
-};
-function showDebug(message) {
-  if (process.env.NODE_ENV === 'development') {
-    console.log(message);
-  }
-}
-module.exports = { genError, createPathIfNot, delImage, showDebug };
+// const delImage = async (uploadImage) => {
+//   await fs.unlink(path.join(imgUploadPth, uploadImage));
+// };
+// function showDebug(message) {
+//   if (process.env.NODE_ENV === 'development') {
+//     console.log(message);
+//   }
+// }
+module.exports = { genError, createPathIfNot };
