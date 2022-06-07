@@ -7,7 +7,6 @@ const voteReco = async (recoId, userId, vote) => {
   let connection;
   try {
     connection = await getConnection();
-    console.log(vote);
     const [reco] = await connection.query(
       `
       SELECT recoId, tittle, spot
@@ -25,7 +24,7 @@ const voteReco = async (recoId, userId, vote) => {
       `,
       [recoId, userId]
     );
-
+    //hacer que no se vote a el mismo
     if (existVote.length > 0) {
       throw genError(
         `Ya votaste en esta recomendacion ID ${reco[0].recoId}`,

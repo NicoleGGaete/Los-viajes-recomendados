@@ -21,7 +21,7 @@ const newRecoCtrl = async (req, res, next) => {
       const image = sharp(req.files.image.data);
       image.resize(500);
 
-      imageFileName = `${nanoid(24)}.jpg`;
+      imageFileName = `${nanoid(24)}.webp`;
 
       await image.toFile(path.join(uploadsDir, imageFileName));
     }
