@@ -6,12 +6,18 @@ const getRecoId = async (recoId) => {
   let connection;
   try {
     connection = await getConnection();
-    console.log(recoId);
+
     const [result] = await connection.query(
       `
-        SELECT * FROM reco
-        JOIN users
+        SELECT reco.recoId, reco.userId, reco.tittle, 
+        reco.image, reco.spot, reco.category,
+         reco.openLine, reco.text, reco.created_at,
+         users.userName, users.avatar,
+          likes.iLike  FROM reco
+        LEFT JOIN users
         ON users.id = reco.userId
+        LEFT JOIN likes
+        ON likes.userID = users.id
         WHERE reco.recoId = ?
         
         `,

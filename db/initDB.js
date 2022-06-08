@@ -9,7 +9,7 @@ async function main() {
     connection = await getConnection();
 
     console.log('Borrando tablas existentes');
-    await connection.query('DROP TABLE IF EXISTS recoVotes');
+    await connection.query('DROP TABLE IF EXISTS likes');
     await connection.query('DROP TABLE IF EXISTS comments');
     await connection.query('DROP TABLE IF EXISTS reco');
     await connection.query('DROP TABLE IF EXISTS users');
@@ -62,12 +62,14 @@ async function main() {
     `);
 
     await connection.query(`
-    CREATE TABLE recoVotes (
-      voteId INTEGER PRIMARY KEY AUTO_INCREMENT,
+    CREATE TABLE likes (
+      likeId INTEGER PRIMARY KEY AUTO_INCREMENT,
+      userId INTEGER NOT NULL,
       recoId INTEGER NOT NULL,
-      vote TINYINT DEFAULT 0 NOT NULL,
-      dateVote DATETIME NOT NULL,
-      userId INTEGER NOT NULL
+      dateLike DATETIME  NOT NULL,
+      iLike INTEGER DEFAULT 0,
+      FOREIGN KEY(userId) REFERENCES users(id),
+      FOREIGN KEY(recoId) REFERENCES reco(recoId)
     )`);
   } catch (error) {
     console.error(error);

@@ -19,6 +19,7 @@ const { comRecoCtrl } = require('./controllers/reco/comRecoCtrl');
 const { delRecoCtrl } = require('./controllers/reco/delRecoCtrl');
 const { recoExist } = require('./db/reco/recoExist');
 const { getMeCtrl } = require('./controllers/users/getMeCtrl');
+const { getRecosUserCtrl } = require('./controllers/users/getRecosUserCtrl');
 
 const app = express();
 
@@ -30,14 +31,16 @@ app.use('/uploads', express.static('./uploads'));
 
 //Rutas users
 app.post('/users', newUserCtrl);
+//Agregar el avatar en la respuesta de la peticion para getMeCtrl y para getUserCtrl
 app.get('/users', authUser, getMeCtrl);
-app.get('users/:userName', getUserCtrl);
+app.get('/users/:userName', getUserCtrl);
+app.get('/:userId/recos', authUser, getRecosUserCtrl);
 app.post('/login', loginCtrl);
 app.put('/users/:userName', authUser, editUserCtrl);
 
 //Rutas reco
 app.post('/', authUser, newRecoCtrl); //publicar reco
-app.get('/', listRecoCtrl); //ver listado de todas las reco (userId, tittle, image, category, spot, openLine), se puede incluir aca la buscqueda por categoria, lugar y votos
+app.get('/', listRecoCtrl); //ver listado de todas las reco //fatal esto (userId, tittle, image, category, spot, openLine), se puede incluir aca la buscqueda por categoria, lugar y votos
 app.get('/:recoId', getRecoCtrl); //ver el detalle de una reco por ID
 app.post('/:recoId/votes', authUser, recoExist, voteRecoCtrl); //voto recomendacion por ID
 app.delete('/:recoId', authUser, recoExist, delRecoCtrl); //eliminar una reco

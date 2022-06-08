@@ -1,44 +1,28 @@
 const { getConnection } = require('../db');
 
 //listado de recomendaciones por categoria y lugar, ordenado desc o asc por fecha o por cantidad de votos
-const listReco = async (search, order, direction) => {
+const listReco = async () => {
   let connection;
 
   try {
     connection = await getConnection();
 
-    const orderDir =
-      (direction && direction.toLowerCase()) === 'desc' ? 'DESC' : 'ASC';
-
-    let orderBy;
-    switch (order) {
-      case 'vote':
-        orderBy = 'vote';
-        break;
-      default:
-        orderBy = 'created_at';
-    }
-
-    let queryOutcome;
-    if (search) {
-      queryOutcome = await connection.query(
-        `
-            SELECT reco.recoId, reco.userId, tittle, image, openLine,(SELECT AVG(vote) FROM recoVotes WHERE recoId=reco.recoId)
+    const [upshot] = await connection.query(
+      `
+  
+            SELECT reco.recoId, reco.userId,
+            reco.tittle, reco.image, reco.openLine,
+            reco.category, reco.spot, users.userName, users.avatar, likes.iLike
             FROM reco
-            WHERE category LIKE ? OR spot LIKE ?
-            ORDER BY ${orderBy} ${orderDir}
+            LEFT JOIN users
+            ON reco.userId = users.id 
+            LEFT JOIN likes
+            ON users.id = likes.userId
+            ORDER BY reco.created_at DESC
             
-            `,
-        [`%${search}%`, `%${search}%`]
-      );
-    } else {
-      queryOutcome = await connection.query(
-        `SELECT reco.recoId, reco.userId, tittle, image, openLine ,
-        (SELECT AVG(vote) FROM recoVotes WHERE recoId=reco.recoId) 
-                FROM reco ORDER BY ${orderBy} ${orderDir}`
-      );
-    }
-    const [upshot] = queryOutcome;
+            `
+    );
+
     return upshot;
   } finally {
     if (connection) connection.release();
@@ -46,3 +30,14 @@ const listReco = async (search, order, direction) => {
 };
 
 module.exports = { listReco };
+
+//////
+
+// SELECT users.userName, users.avatar,
+//   reco.tittle, reco.image, reco.openLine,
+//   recoVotes.vote
+//   FROM users
+//   INNER JOIN reco
+//   ON users.id = reco.userId
+//   INNER JOIN recoVotes
+//   ON reco.userId = recoVotes.userId;

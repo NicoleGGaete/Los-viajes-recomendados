@@ -3,10 +3,12 @@ const { listReco } = require('../../db/reco/listReco');
 //controlador busqueda por categoria y lugar, y orden por voto
 const listRecoCtrl = async (req, res, next) => {
   try {
-    const { search, order, direction } = req.query;
-    const upshot = await listReco(search, order, direction);
+    const recos = await listReco();
 
-    res.send({ status: 'ok', data: upshot });
+    res.send({
+      status: 'ok',
+      data: recos,
+    });
   } catch (error) {
     next(error);
   }
