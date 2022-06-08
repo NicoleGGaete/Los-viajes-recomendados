@@ -5,6 +5,7 @@ const path = require('path');
 const sharp = require('sharp');
 const { nanoid } = require('nanoid');
 const { createPathIfNot } = require('../../helpers/helpers');
+const { getRecoId } = require('../../db/reco/getRecoId');
 
 const newRecoCtrl = async (req, res, next) => {
   try {
@@ -27,7 +28,7 @@ const newRecoCtrl = async (req, res, next) => {
     }
 
     const userId = req.userId;
-    const id = await createReco(
+    const recoId = await createReco(
       userId,
       tittle,
       category,
@@ -36,9 +37,12 @@ const newRecoCtrl = async (req, res, next) => {
       text,
       imageFileName
     );
+
+    const reco = await getRecoId(recoId);
     res.send({
       status: 'ok',
-      message: `Recomendacion con ID: ${id} fue creado exitosamente`,
+      message: `Recomendacion con ID: ${recoId} fue creado exitosamente`,
+      data: reco,
     });
   } catch (error) {
     next(error);

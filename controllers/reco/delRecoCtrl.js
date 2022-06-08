@@ -7,9 +7,7 @@ const delRecoCtrl = async (req, res, next) => {
   try {
     const { recoId } = req.params;
 
-    console.log(recoId);
     const reco = await getRecoId(recoId);
-    console.log(recoId + 1);
 
     if (req.userId !== reco.userId) {
       throw await genError(
@@ -17,10 +15,8 @@ const delRecoCtrl = async (req, res, next) => {
         401
       );
     }
-    console.log(recoId + 2);
 
     await delRecoId(recoId);
-    console.log(recoId + 3 + 'ESTO ESTA EN DELREOCCTRL');
 
     res.send({
       status: 'ok',

@@ -16,7 +16,6 @@ const getUserByUserName = async (userName) => {
     if (result.length === 0) {
       throw await genError('El nombre no existe como usuario', 404);
     }
-    console.log(result);
     return result;
   } finally {
     if (connection) connection.release();
