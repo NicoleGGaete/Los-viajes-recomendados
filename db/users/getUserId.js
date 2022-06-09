@@ -1,25 +1,25 @@
 const { genError } = require('../../helpers/helpers');
 const { getConnection } = require('../db');
 
-//Info de un usuario por su username
-const getUserByUserName = async (userName) => {
+//Info de un usuario por su ID
+const getUserId = async (userId) => {
   let connection;
   try {
     connection = await getConnection();
 
     const [result] = await connection.query(
       `
-        SELECT created_at, userName,  image, description FROM users WHERE userName = ?
+        SELECT id, created_at, userName,  avatar, email, name, surname, description, role FROM users WHERE id = ?
         `,
-      [userName]
+      [userId]
     );
     if (result.length === 0) {
       throw await genError('El nombre no existe como usuario', 404);
     }
-    return result;
+    return result[0];
   } finally {
     if (connection) connection.release();
   }
 };
 
-module.exports = { getUserByUserName };
+module.exports = { getUserId };

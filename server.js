@@ -33,8 +33,8 @@ app.use('/uploads', express.static('./uploads'));
 app.post('/users', newUserCtrl);
 //Agregar el avatar en la respuesta de la peticion para getMeCtrl y para getUserCtrl
 app.get('/users', authUser, getMeCtrl);
-app.get('/users/:userName', getUserCtrl);
-app.get('/:userId/recos', authUser, getRecosUserCtrl);
+app.get('/users/:userId', getUserCtrl);
+app.get('/users/:userId/recos', authUser, getRecosUserCtrl);
 app.post('/login', loginCtrl);
 app.put('/users/:userName', authUser, editUserCtrl);
 

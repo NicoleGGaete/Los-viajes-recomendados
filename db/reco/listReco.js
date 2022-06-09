@@ -30,14 +30,3 @@ const listReco = async () => {
 };
 
 module.exports = { listReco };
-
-//////
-
-// SELECT users.userName, users.avatar,
-//   reco.tittle, reco.image, reco.openLine,
-//   recoVotes.vote
-//   FROM users
-//   INNER JOIN reco
-//   ON users.id = reco.userId
-//   INNER JOIN recoVotes
-//   ON reco.userId = recoVotes.userId;
