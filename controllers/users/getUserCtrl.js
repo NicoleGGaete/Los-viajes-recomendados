@@ -1,10 +1,10 @@
-const { getUserByUserName } = require('../../db/users/getUserByUserName');
+const { getUserId } = require('../../db/users/getUserId');
 
 //controlador de obtencion de user por username
 const getUserCtrl = async (req, res, next) => {
   try {
-    const { userName } = req.params;
-    const upshot = await getUserByUserName(userName);
+    const { userId } = req.params;
+    const upshot = await getUserId(userId);
 
     res.send({
       status: 'ok',
