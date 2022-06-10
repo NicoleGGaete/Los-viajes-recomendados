@@ -4,7 +4,6 @@ const { genError } = require('../helpers/helpers');
 const authUser = (req, res, next) => {
   try {
     const { authorization } = req.headers;
-
     if (!authorization) {
       throw genError('Falta cabecera de autorizacion', 401);
     }
@@ -15,7 +14,6 @@ const authUser = (req, res, next) => {
     } catch {
       throw genError('Token incorrecto', 401);
     }
-
     req.userId = token.id;
 
     next();

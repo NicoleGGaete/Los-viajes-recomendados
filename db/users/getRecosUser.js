@@ -9,12 +9,12 @@ const getRecosUser = async (userId) => {
 
     const [recoUser] = await connection.query(
       `
-        SELECT reco.tittle, reco.image, reco.category, reco.spot, reco.text, reco.created_at, users.avatar, likes.iLike
+        SELECT reco.recoId, reco.tittle, reco.image, reco.category, reco.spot, reco.text, reco.created_at, users.avatar, likes.iLike
         FROM reco 
         LEFT JOIN users
         ON reco.userId = users.id
         LEFT JOIN likes
-        ON users.id = likes.userId
+        ON reco.recoId = likes.recoId
         WHERE users.id = ?
         `,
       [userId]

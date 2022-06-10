@@ -60,16 +60,17 @@ async function main() {
       FOREIGN KEY(recoId) REFERENCES reco(recoId)
     )
     `);
-
+    //CAMBIAR EL DATETIME A DEFAULT
     await connection.query(`
     CREATE TABLE likes (
-      likeId INTEGER PRIMARY KEY AUTO_INCREMENT,
-      userId INTEGER NOT NULL,
+      likeId TINYINT PRIMARY KEY AUTO_INCREMENT,
+      userIdLike TINYINT NOT NULL,
       recoId INTEGER NOT NULL,
-      dateLike DATETIME  NOT NULL,
-      iLike INTEGER DEFAULT 0,
-      FOREIGN KEY(userId) REFERENCES users(id),
+      iLike TINYINT DEFAULT 0 NOT NULL,
+      dateLike DATETIME DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY(recoId) REFERENCES reco(recoId)
+
+
     )`);
   } catch (error) {
     console.error(error);

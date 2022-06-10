@@ -20,6 +20,7 @@ const { delRecoCtrl } = require('./controllers/reco/delRecoCtrl');
 const { recoExist } = require('./db/reco/recoExist');
 const { getMeCtrl } = require('./controllers/users/getMeCtrl');
 const { getRecosUserCtrl } = require('./controllers/users/getRecosUserCtrl');
+const { likeItCtrl } = require('./controllers/reco/likeItCtrl');
 
 const app = express();
 
@@ -45,6 +46,7 @@ app.get('/:recoId', getRecoCtrl); //ver el detalle de una reco por ID
 app.post('/:recoId/votes', authUser, recoExist, voteRecoCtrl); //voto recomendacion por ID
 app.delete('/:recoId', authUser, recoExist, delRecoCtrl); //eliminar una reco
 app.post('/:recoId', authUser, recoExist, comRecoCtrl); //comentar una reco
+app.post('/:recoId/likeit', authUser, recoExist, likeItCtrl);
 
 // Middleware de 404
 
