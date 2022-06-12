@@ -9,7 +9,7 @@ const getCommentId = async (commentId) => {
 
     const [result] = await connection.query(
       `
-            SELECT comments.cmmntId, comments.recoId, 
+            SELECT comments.cmmntId, comments.recoId, comments.userId,
             comments.comment, comments.created_at,
             users.userName, users.avatar
             FROM comments

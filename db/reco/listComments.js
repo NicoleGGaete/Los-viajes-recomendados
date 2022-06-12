@@ -8,7 +8,8 @@ const listComments = async ({ recoId }) => {
     connection = await getConnection();
 
     const [result] = await connection.query(
-      `SELECT comments.cmmntId, comments.recoId, comments.comment, comments.created_at, 
+      `SELECT comments.cmmntId, comments.recoId, comments.userId,
+       comments.comment, comments.created_at, 
 users.userName, users.avatar
 FROM comments
 LEFT JOIN users
