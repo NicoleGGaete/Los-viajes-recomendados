@@ -2,7 +2,7 @@ const { getConnection } = require('../db');
 
 const booleanButton = async (recoId, userIdLike) => {
   let connection;
-
+  ///ELIMINAR COMPLETAMENTE ESTE ARCHIVO
   try {
     connection = await getConnection();
     const [booleanButto] = await connection.query(

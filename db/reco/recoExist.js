@@ -7,7 +7,7 @@ const recoExist = async (req, res, next) => {
   try {
     connection = await getConnection();
     const { recoId } = req.params;
-
+    console.log(recoId);
     const [current] = await connection.query(
       `
       SELECT recoId

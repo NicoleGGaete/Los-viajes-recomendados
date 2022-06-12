@@ -43,7 +43,8 @@ async function main() {
             openLine VARCHAR(100) NOT NULL,
             text VARCHAR(3000) NOT NULL,
             image VARCHAR(100),
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (userId) REFERENCES users(id)
            
         );
 
@@ -52,11 +53,11 @@ async function main() {
     await connection.query(`
     CREATE TABLE comments (
       cmmntId INTEGER PRIMARY KEY AUTO_INCREMENT,
-      userId INTEGER NOT NULL,
       recoId INTEGER NOT NULL,
+      userId INTEGER NOT NULL,
       comment VARCHAR(300) NOT NULL,
+      replyId INTEGER DEFAULT NULL,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY(userId) REFERENCES users(id),
       FOREIGN KEY(recoId) REFERENCES reco(recoId)
     )
     `);
