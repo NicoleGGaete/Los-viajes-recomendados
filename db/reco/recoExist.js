@@ -3,11 +3,13 @@ const { getConnection } = require('../db');
 
 //corrobora si existe una reco en la base de datos
 const recoExist = async (req, res, next) => {
+  console.log('COOOOMOMOMOMO', req.body);
+
   let connection;
   try {
     connection = await getConnection();
     const { recoId } = req.params;
-    console.log(recoId);
+    console.log('HOLAAA', recoId);
     const [current] = await connection.query(
       `
       SELECT recoId
