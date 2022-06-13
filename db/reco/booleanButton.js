@@ -14,9 +14,6 @@ const booleanButton = async (recoId, userIdLike) => {
         `,
       [recoId, userIdLike]
     );
-    console.log('parametros booleanbutton', recoId, userIdLike);
-
-    console.log('booleanButton', booleanButto[0]);
 
     // if (booleanButton.length > 0) return true;
   } finally {

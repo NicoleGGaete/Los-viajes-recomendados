@@ -2,11 +2,6 @@ const { getConnection } = require('../db');
 
 //gestion base de datos de nuevo comentario
 const commentReco = async (comment, recoId, userId, replyId) => {
-  console.log(comment);
-  console.log(recoId);
-  console.log(userId);
-  console.log(replyId);
-
   let connection;
 
   try {
@@ -19,7 +14,6 @@ const commentReco = async (comment, recoId, userId, replyId) => {
       `,
       [userId, recoId, comment, replyId]
     );
-    console.log('result', result);
     return result.insertId;
   } finally {
     if (connection) connection.release();

@@ -15,12 +15,4 @@ const createPathIfNot = async (path) => {
   }
 };
 
-// const delImage = async (uploadImage) => {
-//   await fs.unlink(path.join(imgUploadPth, uploadImage));
-// };
-// function showDebug(message) {
-//   if (process.env.NODE_ENV === 'development') {
-//     console.log(message);
-//   }
-// }
 module.exports = { genError, createPathIfNot };

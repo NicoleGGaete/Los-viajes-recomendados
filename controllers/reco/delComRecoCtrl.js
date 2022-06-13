@@ -4,7 +4,6 @@ const { genError } = require('../../helpers/helpers');
 
 const delComRecoCtrl = async (req, res, next) => {
   try {
-    console.log('REEEEQQQQ', req.params.commntId);
     const commentId = req.params.commntId;
     const comment = await getCommentId(commentId);
     if (req.userId !== comment.userId) {

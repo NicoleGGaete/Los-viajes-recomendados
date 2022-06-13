@@ -17,8 +17,6 @@ const likeItCtrl = async (req, res, next) => {
     //   ? await likeReco(userIdLike, recoId)
     //   : await dislikeReco(userIdLike, recoId);
 
-    console.log('BOOOOOOLEAN ', booleanB);
-
     res.send({
       status: 'ok',
       data: booleanB,

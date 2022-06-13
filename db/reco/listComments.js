@@ -1,7 +1,6 @@
 const { getConnection } = require('../db');
 
 const listComments = async ({ recoId }) => {
-  console.log('PETICION', recoId);
   let connection;
 
   try {
