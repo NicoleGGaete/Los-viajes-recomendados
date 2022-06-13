@@ -5,21 +5,6 @@ const editUser = async (id, email, userName, name, surname, description) => {
   try {
     connection = await getConnection();
 
-    // if (!email) {
-    //   const [userReign] = await connection.query(
-    //     `
-    // SELECT email, userName,name, surname, description
-    // FROM users
-    // WHERE id=?
-    //     `,
-    //     [id]
-    //   );
-    //   email = userReign[0].email;
-    //   console.log(email);
-    // }
-
-    // await editIfExist(id, email);
-
     await connection.query(
       `
       UPDATE users

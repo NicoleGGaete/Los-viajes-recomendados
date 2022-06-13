@@ -17,7 +17,7 @@ const getRecoId = async (recoId) => {
         LEFT JOIN users
         ON users.id = reco.userId
         LEFT JOIN likes
-        ON likes.userID = users.id
+        ON likes.recoId = reco.userId
         WHERE reco.recoId = ?
         
         `,

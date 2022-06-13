@@ -17,7 +17,7 @@ const listReco = async () => {
             LEFT JOIN users
             ON reco.userId = users.id 
             LEFT JOIN likes
-            ON users.id = likes.userId
+            ON reco.recoId = likes.recoId
             ORDER BY reco.created_at DESC
             
             `
