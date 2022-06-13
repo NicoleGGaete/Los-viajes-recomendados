@@ -24,6 +24,7 @@ const { likeExistCtrl } = require('./controllers/reco/likeExistCtrl');
 const { listComRecoCtrl } = require('./controllers/reco/listComRecoCtrl');
 const { delComRecoCtrl } = require('./controllers/reco/delComRecoCtrl');
 const { likeRecoCtrl } = require('./controllers/reco/likeRecoCtrl');
+const { disLikeRecoCtrl } = require('./controllers/reco/disLikeRecoCtrl');
 
 const app = express();
 
@@ -50,11 +51,11 @@ app.post('/:recoId/votes', authUser, recoExist, voteRecoCtrl); //voto recomendac
 app.delete('/:recoId', authUser, recoExist, delRecoCtrl); //eliminar una reco
 app.post('/:recoId/comments', authUser, recoExist, comRecoCtrl); //comentar una reco
 app.get('/:recoId/comments', /*authUser, recoExist,*/ listComRecoCtrl); //ver comentde una recoç
-app.delete('/:recoId/:commntId', authUser, recoExist, delComRecoCtrl); //ver comentde una recoç
+app.delete('/:recoId/comments/:commntId', authUser, recoExist, delComRecoCtrl); //ver comentde una recoç
 
 app.get('/:recoId/likeit', authUser, recoExist, likeExistCtrl);
 app.post('/:recoId/likeit', authUser, recoExist, likeRecoCtrl);
-// app.delete('/:recoId/likeit', authUser, recoExist, delLikeRecoCtrl);
+app.delete('/:recoId/likeit', authUser, recoExist, disLikeRecoCtrl);
 
 // Middleware de 404
 
