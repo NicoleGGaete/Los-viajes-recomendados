@@ -20,9 +20,10 @@ const { delRecoCtrl } = require('./controllers/reco/delRecoCtrl');
 const { recoExist } = require('./db/reco/recoExist');
 const { getMeCtrl } = require('./controllers/users/getMeCtrl');
 const { getRecosUserCtrl } = require('./controllers/users/getRecosUserCtrl');
-const { likeItCtrl } = require('./controllers/reco/likeItCtrl');
+const { likeExistCtrl } = require('./controllers/reco/likeExistCtrl');
 const { listComRecoCtrl } = require('./controllers/reco/listComRecoCtrl');
 const { delComRecoCtrl } = require('./controllers/reco/delComRecoCtrl');
+const { likeRecoCtrl } = require('./controllers/reco/likeRecoCtrl');
 
 const app = express();
 
@@ -51,8 +52,9 @@ app.post('/:recoId/comments', authUser, recoExist, comRecoCtrl); //comentar una 
 app.get('/:recoId/comments', /*authUser, recoExist,*/ listComRecoCtrl); //ver comentde una recoç
 app.delete('/:recoId/:commntId', authUser, recoExist, delComRecoCtrl); //ver comentde una recoç
 
-app.post('/:recoId/likeit', authUser, recoExist, likeItCtrl);
-app.post('/:recoId/dislikeit', authUser, recoExist, likeItCtrl);
+app.get('/:recoId/likeit', authUser, recoExist, likeExistCtrl);
+app.post('/:recoId/likeit', authUser, recoExist, likeRecoCtrl);
+// app.delete('/:recoId/likeit', authUser, recoExist, delLikeRecoCtrl);
 
 // Middleware de 404
 
