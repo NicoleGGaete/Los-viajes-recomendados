@@ -1,8 +1,4 @@
-const { likeReco } = require('../../db/reco/likeReco');
-// const { booleanButton } = require('../../db/reco/booleanButton');
-
 const { likeExistReco } = require('../../db/reco/likeExistReco');
-const { dislikeReco } = require('../../db/reco/dislikeReco');
 
 const likeExistCtrl = async (req, res, next) => {
   try {

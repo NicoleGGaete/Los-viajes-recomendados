@@ -5,10 +5,13 @@ const disLikeRecoCtrl = async (req, res, next) => {
     const recoId = req.params.recoId;
     const userIdLike = req.userId;
     console.log(recoId, userIdLike);
-    await dislikeReco(userIdLike, recoId);
+    const data = await dislikeReco(userIdLike, recoId);
+
+    console.log('DADAT', data);
 
     res.send({
       status: 'ok',
+      data: data,
     });
   } catch (error) {
     next(error);

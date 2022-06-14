@@ -20,11 +20,11 @@ const { delRecoCtrl } = require('./controllers/reco/delRecoCtrl');
 const { recoExist } = require('./db/reco/recoExist');
 const { getMeCtrl } = require('./controllers/users/getMeCtrl');
 const { getRecosUserCtrl } = require('./controllers/users/getRecosUserCtrl');
-const { likeExistCtrl } = require('./controllers/reco/likeExistCtrl');
 const { listComRecoCtrl } = require('./controllers/reco/listComRecoCtrl');
 const { delComRecoCtrl } = require('./controllers/reco/delComRecoCtrl');
 const { likeRecoCtrl } = require('./controllers/reco/likeRecoCtrl');
 const { disLikeRecoCtrl } = require('./controllers/reco/disLikeRecoCtrl');
+const { likeExistCtrl } = require('./controllers/reco/likeExistCtrl');
 
 const app = express();
 
