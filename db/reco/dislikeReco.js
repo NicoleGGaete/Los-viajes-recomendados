@@ -5,7 +5,7 @@ const dislikeReco = async (userIdLike, recoId) => {
   try {
     connection = await getConnection();
 
-    await connection.query(
+    const delet = await connection.query(
       `
       DELETE FROM likes
       WHERE userIdLike = ?
@@ -13,6 +13,8 @@ const dislikeReco = async (userIdLike, recoId) => {
       `,
       [userIdLike, recoId]
     );
+    console.log('detkleteet', delet);
+    return delet[0];
   } finally {
     if (connection) connection.release();
   }

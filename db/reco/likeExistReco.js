@@ -2,6 +2,7 @@ const { getConnection } = require('../db');
 
 const likeExistReco = async (userIdLike, recoId) => {
   let connection;
+  console.log('HOIAOLALALLAJLALA', recoId, userIdLike);
 
   try {
     connection = await getConnection();
