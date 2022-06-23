@@ -23,8 +23,6 @@ async function main() {
              password VARCHAR(100) NOT NULL, 
              created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
              userName VARCHAR(100) UNIQUE NOT NULL,
-             name VARCHAR(100) NOT NULL,
-             surname VARCHAR(100) NOT NULL,
              avatar VARCHAR(100),
              description VARCHAR(280),
              role ENUM("normal", "admin") DEFAULT "normal" NOT NULL

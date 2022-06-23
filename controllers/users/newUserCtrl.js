@@ -9,7 +9,7 @@ const sharp = require('sharp');
 const newUserCtrl = async (req, res, next) => {
   try {
     await nwUsrSchm.validateAsync(req.body);
-    const { email, password1, userName, name, surname, description } = req.body;
+    const { email, password1, userName, description } = req.body;
     let avatarUp;
 
     if (req.files && req.files.avatar) {
@@ -27,8 +27,7 @@ const newUserCtrl = async (req, res, next) => {
       email,
       password1,
       userName,
-      name,
-      surname,
+
       avatarUp,
       description
     );

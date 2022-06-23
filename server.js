@@ -25,6 +25,8 @@ const { delComRecoCtrl } = require('./controllers/reco/delComRecoCtrl');
 const { likeRecoCtrl } = require('./controllers/reco/likeRecoCtrl');
 const { disLikeRecoCtrl } = require('./controllers/reco/disLikeRecoCtrl');
 const { likeExistCtrl } = require('./controllers/reco/likeExistCtrl');
+const { searchRecoCtrl } = require('./controllers/reco/searchRecoCtrl');
+const { likeExist } = require('./db/reco/likeExist');
 
 const app = express();
 
@@ -39,22 +41,25 @@ app.post('/users', newUserCtrl);
 //Agregar el avatar en la respuesta de la peticion para getMeCtrl y para getUserCtrl
 app.get('/users', authUser, getMeCtrl);
 app.get('/users/:userId', getUserCtrl);
-app.get('/users/:userId/recos', authUser, getRecosUserCtrl);
+app.get('/users/:userId/recos', getRecosUserCtrl);
 app.post('/login', loginCtrl);
 app.put('/users/:userName', authUser, editUserCtrl);
 
 //Rutas reco
 app.post('/', authUser, newRecoCtrl); //publicar reco
 app.get('/', listRecoCtrl); //ver listado de todas las reco //fatal esto (userId, tittle, image, category, spot, openLine), se puede incluir aca la buscqueda por categoria, lugar y votos
+app.get('/search', searchRecoCtrl);
+
 app.get('/:recoId', getRecoCtrl); //ver el detalle de una reco por ID
 app.post('/:recoId/votes', authUser, recoExist, voteRecoCtrl); //voto recomendacion por ID
 app.delete('/:recoId', authUser, recoExist, delRecoCtrl); //eliminar una reco
+
 app.post('/:recoId/comments', authUser, recoExist, comRecoCtrl); //comentar una reco
-app.get('/:recoId/comments', /*authUser, recoExist,*/ listComRecoCtrl); //ver comentde una recoç
+app.get('/:recoId/comments', /* authUser, recoExist, */ listComRecoCtrl); //ver comentde una recoç
 app.delete('/:recoId/comments/:commntId', authUser, recoExist, delComRecoCtrl); //ver comentde una recoç
 
 app.get('/:recoId/likeit', authUser, recoExist, likeExistCtrl);
-app.post('/:recoId/likeit', authUser, recoExist, likeRecoCtrl);
+app.post('/:recoId/likeit', authUser, recoExist, likeExist, likeRecoCtrl);
 app.delete('/:recoId/likeit', authUser, recoExist, disLikeRecoCtrl);
 
 // Middleware de 404

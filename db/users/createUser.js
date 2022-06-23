@@ -3,15 +3,7 @@ const { genError } = require('../../helpers/helpers');
 const { getConnection } = require('../db');
 
 //Creacion del usuario en la base de datos
-const createUser = async (
-  email,
-  password1,
-  userName,
-  name,
-  surname,
-  avatar,
-  description
-) => {
+const createUser = async (email, password1, userName, avatar, description) => {
   let connection;
 
   try {
@@ -35,9 +27,9 @@ const createUser = async (
     //creamos usuario
     const [newUser] = await connection.query(
       `
-        INSERT INTO users (email, password, userName, name, surname, avatar, description) VALUES (?,?,?,?,?,?,?)
+        INSERT INTO users (email, password, userName,  avatar, description) VALUES (?,?,?,?,?)
         `,
-      [email, passHash, userName, name, surname, avatar, description]
+      [email, passHash, userName, avatar, description]
     );
 
     //devuelvbe la id

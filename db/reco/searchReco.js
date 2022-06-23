@@ -1,48 +1,43 @@
 const { getConnection } = require('../db');
 
 //listado de recomendaciones por categoria y lugar, ordenado desc o asc por fecha o por cantidad de votos
-// const listReco = async (search, order, direction) => {
-//   let connection;
 
-//   try {
-//     connection = await getConnection();
+const searchReco = async (searching) => {
+  let connection;
 
-//     const orderDir =
-//       (direction && direction.toLowerCase()) === 'desc' ? 'DESC' : 'ASC';
+  try {
+    connection = await getConnection();
 
-//     let orderBy;
-//     switch (order) {
-//       case 'vote':
-//         orderBy = 'vote';
-//         break;
-//       default:
-//         orderBy = 'created_at';
-//     }
+    const search = searching.search;
 
-//     let queryOutcome;
-//     if (search) {
-//       queryOutcome = await connection.query(
-//         `
+    console.log(search);
 
-//             SELECT reco.recoId, reco.userId, tittle, image, openLine,
-//             (SELECT AVG(vote) FROM recoVotes WHERE recoId=reco.recoId)
-//             FROM reco
-//             WHERE category LIKE ? OR spot LIKE ?
-//             ORDER BY ${orderBy} ${orderDir}
+    const [result] = await connection.query(
+      `
+    SELECT reco.recoId, reco.userId,
+      reco.tittle, reco.image, reco.openLine,
+      reco.category, reco.spot,reco.created_at,
+       users.userName, users.avatar, likes.iLike
+      FROM reco
+      LEFT JOIN users
+      ON reco.userId = users.id
+      LEFT JOIN likes
+      ON reco.recoId = likes.recoId
+      WHERE reco.category LIKE ? 
+      OR reco.spot LIKE ?
+      OR users.userName LIKE ?
 
-//             `,
-//         [`%${search}%`, `%${search}%`]
-//       );
-//     } else {
-//       queryOutcome = await connection.query(
-//         `SELECT reco.recoId, reco.userId, tittle, image, openLine ,
-//         (SELECT AVG(vote) FROM recoVotes WHERE recoId=reco.recoId)
-//                 FROM reco ORDER BY ${orderBy} ${orderDir}`
-//       );
-//     }
-//     const [upshot] = queryOutcome;
-//     return upshot;
-//   } finally {
-//     if (connection) connection.release();
-//   }
-// };
+      GROUP BY reco.recoId, likes.iLike
+      ORDER BY reco.created_at DESC
+      `,
+      [`${search}`, `%${search}%`, `%${search}%`]
+    );
+
+    console.log('RESULT', result[0]);
+
+    return result[0];
+  } finally {
+    if (connection) connection.release();
+  }
+};
+module.exports = { searchReco };

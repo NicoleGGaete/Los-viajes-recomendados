@@ -10,7 +10,7 @@ const likeReco = async (userIdLike, recoId) => {
       `
       INSERT INTO likes
       (userIdLike, recoId, iLike)
-      VALues (?,?,?)
+      VALUES (?,?,?)
       `,
       [userIdLike, recoId, like]
     );
