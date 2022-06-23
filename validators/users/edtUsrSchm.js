@@ -14,18 +14,6 @@ const edtUsrSchm = Joi.object({
     'any.required': 'El userName es un campo requerido',
   }),
 
-  name: Joi.string().max(100).required().messages({
-    'string.empty': 'Debe ingresar un nombre',
-    'string.max': 'El nombre debe contener menos de 100 caraceres',
-    'any.required': 'El namees un campo requerido',
-  }),
-
-  surname: Joi.string().max(100).required().messages({
-    'string.empty': 'Debe ingresar un apellido',
-    'string.max': 'El apellido debe contener menos de 100 caraceres',
-    'any.required': 'El surname es un campo requerido',
-  }),
-
   description: Joi.string().max(280).required().messages({
     'string.empty': 'Debe ingresar una descripcion',
     'string.max': 'La descripcion debe contener menos de 280 caraceres',

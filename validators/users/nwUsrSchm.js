@@ -26,23 +26,11 @@ const nwUsrSchm = Joi.object().keys({
     'any.required': 'El nombre de usuario es un campo requerido',
   }),
 
-  name: Joi.string().max(100).required().messages({
-    'string.empty': 'Debe ingresar un nombre',
-    'string.max': 'El nombre debe contener menos de 100 caraceres',
-    'any.required': 'El nombre  es un campo requerido',
-  }),
-
-  surname: Joi.string().max(100).required().messages({
-    'string.empty': 'Debe ingresar un apellido',
-    'string.max': 'El apellido debe contener menos de 100 caraceres',
-    'any.required': 'El apellido de usuario es un campo requerido',
-  }),
-
   avatar: Joi.string().empty(''),
 
   description: Joi.string().empty('').max(280).messages({
     // 'string.empty': 'Debe ingresar una descripcion',
-    'string.max': 'La descripcion debe contener menos de 280 caraceres',
+    'string.max': 'La descripcion debe contener menos de 350 caraceres',
   }),
 });
 

@@ -5,12 +5,12 @@ const { edtUsrSchm } = require('../../validators/users/edtUsrSchm');
 
 const editUserCtrl = async (req, res, next) => {
   try {
-    const { email, userName, name, surname, description } = req.body;
+    const { email, userName, description } = req.body;
     const { id } = req.userId;
 
-    edtUsrSchm.validate(email, userName, name, surname, description);
+    edtUsrSchm.validate(email, userName, description);
 
-    await editUser(id, email, userName, name, surname, description);
+    await editUser(id, email, userName, description);
 
     res.send({
       status: 'Ok',

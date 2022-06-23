@@ -4,16 +4,10 @@ const likeExistCtrl = async (req, res, next) => {
   try {
     const { recoId } = req.params;
     const userIdLike = req.userId;
-    // console.log('HOIAOLALALLAJLALA', recoId, userIdLike);
-    // const booleanB = await booleanButton(userIdLike, recoId);
+    console.log('hola', userIdLike, recoId);
 
     const booleanB = await likeExistReco(userIdLike, recoId);
-    // if (booleanB != true) await likeReco(userIdLike, recoId);
 
-    // booleanB !== false
-    //   ? await likeReco(userIdLike, recoId)
-    //   : await dislikeReco(userIdLike, recoId);
-    console.log('boolean', booleanB);
     res.send({
       status: 'ok',
       data: booleanB,

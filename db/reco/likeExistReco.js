@@ -2,7 +2,6 @@ const { getConnection } = require('../db');
 
 const likeExistReco = async (userIdLike, recoId) => {
   let connection;
-  console.log('HOIAOLALALLAJLALA', recoId, userIdLike);
 
   try {
     connection = await getConnection();
@@ -17,6 +16,7 @@ const likeExistReco = async (userIdLike, recoId) => {
       [recoId, userIdLike]
     );
 
+    console.log('HOLA', existLike.length);
     return existLike.length > 0 ? true : false;
   } finally {
     if (connection) connection.release();

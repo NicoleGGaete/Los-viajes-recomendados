@@ -26,10 +26,10 @@ const nwRcSchm = Joi.object().keys({
     'any.required': 'El "openLine" es un campo requerido',
   }),
 
-  text: Joi.string().max(280).required().messages({
+  text: Joi.string().max(360).required().messages({
     'string.empty': 'Debe ingresar un texto de recomendacion',
     'string.max':
-      'El texto de recomendacion debe contener menos de 280 caraceres',
+      'El texto de recomendacion debe contener menos de 360 caraceres',
     'any.required': 'El "text" es un campo requerido',
   }),
 });

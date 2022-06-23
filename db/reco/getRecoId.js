@@ -13,11 +13,9 @@ const getRecoId = async (recoId) => {
         reco.image, reco.spot, reco.category,
          reco.openLine, reco.text, reco.created_at,
          users.userName, users.avatar,
-          likes.iLike  FROM reco
+          (SELECT COUNT(likes.iLike) FROM likes WHERE likes.recoId = reco.recoId ) AS allLikes  FROM reco
         LEFT JOIN users
         ON users.id = reco.userId
-        LEFT JOIN likes
-        ON likes.recoId = reco.userId
         WHERE reco.recoId = ?
         
         `,
